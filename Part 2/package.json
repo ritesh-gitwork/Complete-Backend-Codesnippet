@@ -1,0 +1,13 @@
+{
+  "name": "part-2",
+  "version": "1.0.0",
+  "main": "server&LogfileCreate.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node serverNLogfileCreate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
