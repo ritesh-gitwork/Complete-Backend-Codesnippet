@@ -1,6 +1,6 @@
 const http = require("http");
 const fs = require("fs");
-const { Transform } = require("stream");
+const { Transform, pipeline } = require("stream");
 
 const server = http.createServer((req, res) => {
   //  -------------------- 1  -------------------------
@@ -57,7 +57,7 @@ const server = http.createServer((req, res) => {
   //   writeStream.write(modifiedWord);
   // });
   //
-  //
+  //not part of bad
   readStream.pipe(transformStream).pipe(writeStream);
 
   res.end();
