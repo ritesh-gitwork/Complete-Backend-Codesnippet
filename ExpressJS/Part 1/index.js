@@ -49,7 +49,7 @@ app.post("/api/users", (req, res) => {
   const existingUser = data.find((u) => u.email === email);
 
   if (existingUser) {
-    return res.status(404).send("user exist");
+    return res.status(404).send("user exist"); //  return is important to exit the code
   }
 
   const newUser = {
@@ -65,6 +65,49 @@ app.post("/api/users", (req, res) => {
     data: newUser,
   });
 });
+
+// PUT Method
+app.put("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, age, email } = req.body;
+
+  const userIndex = data.findIndex((u) => u.id === parseInt(id));
+
+  if (userIndex === -1) {
+    return res.status(404).json({ message: "user not found" });
+  }
+
+  data[userIndex] = {
+    id: parseInt(id),
+    name,
+    age,
+    email,
+  };
+
+  res.status(200).json({
+    message: "user replaced Put",
+    data: data[userIndex],
+  });
+});
+
+// PATCH Method
+
+app.patch("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, email, age } = req.body;
+
+  const findIndex = data.findIndex((u) => u.id === parseInt(id));
+
+  if (findIndex === -1) {
+    return res.status(404).json({ message: "user not found PATCH" });
+  }
+
+  data[findIndex];
+});
+
+// DELETE Method
+// Assignment: Implement DELETE Request
+// filter , find and spread operator , middleware
 
 //
 //
