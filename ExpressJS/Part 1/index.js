@@ -101,13 +101,50 @@ app.patch("/api/users/:id", (req, res) => {
   if (findIndex === -1) {
     return res.status(404).json({ message: "user not found PATCH" });
   }
+  // ✅ Partial update (sirf jo fields bheji hain wahi update hongi)
+  const updatedUser = {
+    ...data[findIndex],
+    ...(name && { name }),
+    ...(age && { age }),
+    ...(email && { email }),
+  };
 
-  data[findIndex];
+  data[findIndex] = updatedUser;
+
+  res.status(200).json({
+    message: "user replaced Patch",
+    data: data[findIndex],
+  });
 });
 
 // DELETE Method
+app.delete("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+
+  const userIndex = data.findIndex((u) => u.id === parseInt(id));
+
+  if (userIndex === -1) {
+    return res.status(404).json({ message: "user not found" });
+  }
+
+  const deleteUser = data.splice(userIndex, 1);
+
+  res.status(200).json({
+    message: "user deleted",
+    data: deleteUser,
+  });
+});
+
 // Assignment: Implement DELETE Request
 // filter , find and spread operator , middleware
+
+// Summary
+
+// filter → returns multiple results (array).
+
+// find → returns first match (single object/value).
+
+// spread (...) → copying, merging, updating arrays/objects.
 
 //
 //
