@@ -8,6 +8,10 @@ yarn-error.log*
 .env
 .env.*
 
+# Ignore ESLint config in node_modules
+node_modules/**/.eslintrc
+node_modules/**/.eslintrc.*
+
 # Logs
 logs/
 *.log
