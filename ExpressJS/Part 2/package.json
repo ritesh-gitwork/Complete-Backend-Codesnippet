@@ -4,7 +4,7 @@
   "main": "middleware.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon middleware.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
