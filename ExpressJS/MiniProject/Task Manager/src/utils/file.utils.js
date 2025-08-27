@@ -7,6 +7,15 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const filename = path.join(__dirname, "data", "tasks.json");
+const filePath = path.join(__dirname, "data", "tasks.json");
 
-export const readTasks = () => {};
+export const readTasks = () => {
+  try {
+    ensureFileExists();
+    const data = fs.readFileSync(filePath, "utf-8");
+    return JSON.parse(data || "[]");
+  } catch (error) {
+    console.error("Error reading tasks", error);
+    return [];
+  }
+};
