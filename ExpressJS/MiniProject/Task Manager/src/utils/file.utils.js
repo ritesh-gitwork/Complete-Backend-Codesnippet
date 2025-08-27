@@ -19,3 +19,22 @@ export const readTasks = () => {
     return [];
   }
 };
+
+export const writeTasks = (tasks) => {
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(tasks, null, 2), "utf-8");
+  } catch (error) {
+    console.error("Error writing Tasks :", error);
+  }
+};
+
+const ensureFileExists = () => {
+  try {
+    if (!fs.existsSync(filePath)) {
+      fs.mkdirSync(path.dirname(filePath), { recursive: true }); // ensure the directory exists
+      fs.writeFileSync(filePath, "[]", "utf-8"); // create a empty json file
+    }
+  } catch (error) {
+    console.error("Error ensuring file exists:", error);
+  }
+};

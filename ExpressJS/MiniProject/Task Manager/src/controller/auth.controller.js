@@ -9,20 +9,31 @@ export const login = (req, res) => {
   req.session.user = { username };
 
   // set a cookie
-  req.cookie("username", username, {
-    httponly: true,
+  res.cookie("username", username, {
+    httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24,
   });
 
   res.json({ message: "Login Successfully", username });
 };
 
+// export const logout = (req, res) => {
+//   res.clearCookie("username");
+//   res.session.destroy((err) => {
+//     if (err) {
+//       return res.status(500).send("error logging out");
+//     }
+//     res.json({ message: "Logout successfully " });
+//   });
+// };
+
 export const logout = (req, res) => {
-  res.clearCookie("username");
-  res.session.destroy((err) => {
+  req.session.destroy((err) => {
     if (err) {
-      return res.status(500).send("error logging out");
+      return res.status(500).send("Error logging out");
     }
-    res.json({ message: "Logout successfully " });
+    res.clearCookie("username");
+    // res.clearCookie("connect.sid");
+    res.json({ message: "Logout successfully" });
   });
 };
