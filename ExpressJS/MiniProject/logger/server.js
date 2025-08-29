@@ -1,10 +1,11 @@
-import express from "express";
-import publicRoutes from "./routes/public.route.js";
-import privateRoutes from "./routes/private.route.js";
 import fs from "fs";
 import path from "path";
+import express from "express";
 import { fileURLToPath } from "url";
+
 import logMiddleware from "./middleware/log.middleware.js";
+import publicRoutes from "./routes/public.route.js";
+import privateRoutes from "./routes/private.route.js";
 
 const app = express();
 
